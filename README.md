@@ -1,6 +1,9 @@
 pickadate.js for Yii2
 =====================
+
 pickadate.js Extention for Yii2
+
+The mobile-friendly, responsive, and lightweight jQuery date & time input picker.
 
 Installation
 ------------
@@ -28,4 +31,20 @@ Usage
 Once the extension is installed, simply use it in your code by  :
 
 ```php
-<?= \kato\pickadate\AutoloadExample::widget(); ?>```
+<?= \kato\pickadate\Pickadate::widget([
+      'isTime' => true,
+      'pickadateOptions' => [
+          'formatSubmit' => 'HH:i',
+      ],
+  ]); ?>```
+
+
+To use with active form :
+
+```php
+<?= $form->field($model, 'time-field')->widget(\kato\pickadate\Pickadate::classname(), [
+    'isTime' => true,
+    'pickadateOptions' => [
+        'formatSubmit' => 'HH:i',
+    ],
+]); ?>```

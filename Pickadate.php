@@ -5,12 +5,15 @@ namespace kato\pickadate;
 use Yii;
 use kato\pickadate\assets\PickadateAsset;
 use yii\helpers\Html;
+use yii\helpers\Json;
 
 class Pickadate extends \yii\widgets\InputWidget
 {
     public $language = 'en';
     public $initJs = null;
     public $isTime = false;
+
+    public $pickadateOptions = [];
 
     public function init()
     {
@@ -25,7 +28,8 @@ class Pickadate extends \yii\widgets\InputWidget
         }
 
         if (is_null($this->initJs)) {
-            $this->initJs = '$(".' . $defaultClass . '").' . $useMethod . '();';
+            $options = Json::encode($this->pickadateOptions);
+            $this->initJs = '$(".' . $defaultClass . '").' . $useMethod . '(' . $options . ');';
         }
 
         Html::addCssClass($this->options, $defaultClass);
