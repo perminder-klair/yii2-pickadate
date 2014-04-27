@@ -9,10 +9,26 @@ use yii\helpers\Html;
 class Pickadate extends \yii\widgets\InputWidget
 {
     public $language = 'en';
+    public $initJs = null;
+    public $isTime = false;
 
     public function init()
     {
         parent::init();
+
+        if ($this->isTime === true) {
+            $defaultClass = 'timepicker';
+            $useMethod = 'pickatime';
+        } else {
+            $defaultClass = 'datepicker';
+            $useMethod = 'pickadate';
+        }
+
+        if (is_null($this->initJs)) {
+            $this->initJs = '$(".' . $defaultClass . '").' . $useMethod . '();';
+        }
+
+        Html::addCssClass($this->options, $defaultClass);
 
         Yii::setAlias('@pickadate', dirname(__FILE__));
         $this->registerAsset();
@@ -26,9 +42,9 @@ class Pickadate extends \yii\widgets\InputWidget
     protected function renderInput()
     {
         if ($this->hasModel()) {
-            $input = Html::activeTextArea($this->model, $this->attribute, $this->options);
+            $input = Html::activeTextInput($this->model, $this->attribute, $this->options);
         } else {
-            $input = Html::textArea($this->name, $this->value, $this->options);
+            $input = Html::textInput($this->name, $this->value, $this->options);
         }
 
         return $input;
@@ -39,6 +55,6 @@ class Pickadate extends \yii\widgets\InputWidget
         $view = $this->getView();
         PickadateAsset::register($view);
 
-//        $view->registerJs('$(function(){' . $this->initJs . '});');
+        $view->registerJs('jQuery(document).ready(function () {' . $this->initJs . '});');
     }
 }
