@@ -1,0 +1,7 @@
+{
+  "name": "yii2-pickadate",
+  "version": "1.0.0",
+  "dependencies": {
+    "pickadate": "~3.5.0"
+  }
+}
