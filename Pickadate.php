@@ -55,6 +55,6 @@ class Pickadate extends \yii\widgets\InputWidget
         $view = $this->getView();
         PickadateAsset::register($view);
 
-        $view->registerJs('jQuery(document).ready(function () {' . $this->initJs . '});');
+        $view->registerJs('$(function(){' . $this->initJs . '});');
     }
 }

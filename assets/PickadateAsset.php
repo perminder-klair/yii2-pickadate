@@ -19,6 +19,7 @@ class PickadateAsset extends AssetBundle
         'pickadate/lib/compressed/picker.js',
         'pickadate/lib/compressed/picker.date.js',
         'pickadate/lib/compressed/picker.time.js',
+        'pickadate/lib/compressed/legacy.js',
     ];
 
     public $depends = [
