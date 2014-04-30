@@ -10,26 +10,6 @@ use yii\helpers\Json;
 class Pickadate extends \yii\widgets\InputWidget
 {
     /**
-     * @var string the size of the input - 'lg', 'md', 'sm', 'xs'
-     */
-    public $size;
-
-    /**
-     * @var string/boolean the addon content
-     */
-    public $addon = '<i class="glyphicon glyphicon-time"></i>';
-
-    /**
-     * @var array HTML attributes for the addon container
-     * the following special options are identified
-     * - asButton: boolean if the addon is to be displayed as a button.
-     * - buttonOptions: array HTML attributes if the addon is to be
-     *   displayed like a button. If [[asButton]] is true, this will
-     *   default to ['class' => 'btn btn-default']
-     */
-    public $addonOptions = [];
-
-    /**
      * @var array HTML attributes for the input group container
      */
     public $containerOptions = [];
@@ -71,9 +51,6 @@ class Pickadate extends \yii\widgets\InputWidget
     protected function renderInput()
     {
         Html::addCssClass($this->options, 'form-control');
-        if (!empty($this->options['disabled'])) {
-            Html::addCssClass($this->addonOptions, 'disabled-addon');
-        }
 
         if ($this->hasModel()) {
             $input = Html::activeTextInput($this->model, $this->attribute, $this->options);
